@@ -3,7 +3,25 @@ Hubot
 
 This is a version of GitHub's Campfire bot, hubot.  He's pretty cool.
 
-This version is designed to be deployed on heroku.
+This is a fork of the a version designed to be deployed on heroku.
+
+Running on #bekk
+================
+
+This bot is running on #bekk @ efnet
+
+Config:
+
+```
+=== bekkbot Config Vars
+HUBOT_IRC_NICK:   bekkbot
+HUBOT_IRC_ROOMS:  #bekk
+HUBOT_IRC_SERVER: efnet.port80.se
+REDISTOGO_URL:    SECRET
+```
+
+Heroku URL: http://bekkbot.herokuapp.com/
+
 
 Playing with Hubot
 ==================
@@ -36,6 +54,7 @@ Delete any scripts you think are silly.  Add whatever functionality you
 want hubot to have.
 
 
+
 hubot-scripts
 =============
 
@@ -66,7 +85,7 @@ Create a separate user for your bot and get their token from the web UI.
     % heroku config:add HUBOT_CAMPFIRE_TOKEN="..."
 
 Get the numeric ids of the rooms you want the bot to join, comma
-delimited. If you want the bot to connect to `https://mysubdomain.campfirenow.com/room/42` 
+delimited. If you want the bot to connect to `https://mysubdomain.campfirenow.com/room/42`
 and `https://mysubdomain.campfirenow.com/room/1024` then you'd add it like this:
 
     % heroku config:add HUBOT_CAMPFIRE_ROOMS="42,1024"
@@ -80,9 +99,9 @@ IRC Variables
 ------------------
 
     % heroku config:add HUBOT_IRC_SERVER="irc.freenode.net"
-    
+
     % heroku config:add HUBOT_IRC_ROOMS="#github,#node.js"
-    
+
     % heroku config:add HUBOT_IRC_NICK="MICCHECK1212"
 
 Twilio Variables

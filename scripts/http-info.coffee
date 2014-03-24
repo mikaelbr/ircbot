@@ -25,9 +25,10 @@ module.exports = (robot) ->
   if process.env.HUBOT_HTTP_INFO_IGNORE_USERS?
     ignoredusers = process.env.HUBOT_HTTP_INFO_IGNORE_USERS.split(',')
 
-  robot.hear /(http(?:s)?:\/\/([\S]+))/i, (msg) ->
-    url = msg.match[1]
+  pattern = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi
+  robot.hear new RegExp(pattern), (msg) ->
 
+    url = msg.match[0]
     username = msg.message.user.name
     if _.some(ignoredusers, (user) -> user == username)
       console.log 'ignoring user due to blacklist:', username
@@ -55,13 +56,7 @@ module.exports = (robot) ->
           msg.send "#{title}"
 
     unless ignore
-      if jsdom.version < '0.7.0'
-        jsdom.env
-          html: url
-          scripts: [ jquery ]
-          done: done
-      else
-        jsdom.env
-          url: url
-          scripts: [ jquery ]
-          done: done
+      jsdom.env
+        url: url
+        scripts: [ jquery ]
+        done: done
